@@ -24,8 +24,12 @@
                 <input type="text" placeholder="Search" class="input input-bordered w-[300px]" />
             </div>
 
-            <div class="w-[30%] text-right" >
-                <button class="btn font-bold">Sort</button>
+            <div class="w-[30%] text-right relative" >
+                <button id="sortBtn" class="btn font-bold">Sort</button>
+                <ul id="sortBtnUl" class="absolute top-13 right-0 hidden font-bold ">
+                    <li onclick="sortVideosFetch('ls')" class="py-2 px-4 rounded-lg cursor-pointer border-b-2 bg-red-300 hover:bg-red-500">Ascending</li>
+                    <li onclick="sortVideosFetch('ds')" class="py-2 px-4 rounded-lg cursor-pointer border-b-2 bg-red-300 hover:bg-red-500">Descending</li>
+                </ul>
             </div>
 
 
@@ -36,7 +40,7 @@
       <section class="w-full">
         <div id="categories-section" class="w-11/12 mx-auto flex justify-center items-center py-4 gap-4 md:w-4/5 ">
 
-            <button class="btn">All</button>
+            <button class="btn" onclick="loadVideos();">All</button>
 
         </div>
       </section>
