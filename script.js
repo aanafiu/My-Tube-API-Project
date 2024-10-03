@@ -72,16 +72,7 @@ const showCatagory = (data) => {
 loadVideos();
 loadCategory();
 
-// const people = [
-//     { name: 'John', age: 25 },
-//     { name: 'Alice', age: 30 },
-//     { name: 'Bob', age: 22 }
-//   ];
-  
-//   // Sort by age (ascending)
-//   people.sort((a, b) => a.age - b.age);
-  
-//   console.log(people);
+
 
 
 // sort btn
