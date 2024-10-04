@@ -14,10 +14,15 @@
 
     <!-- navbar -->
      <header class="w-full">
+        <nav class=" sm:hidden  w-11/12 mx-auto  md:w-4/5 flex items-center justify-center pt-5">
+            <div >
+                <img src="./Logo.png" alt="" class=" object-cover">
+            </div>
+        </nav>
         <nav class="w-11/12 mx-auto  md:w-4/5 flex items-center justify-between py-4 border-b-2">
 
-            <div class="w-[30%]">
-                <img src="./Logo.png" alt="" class=" object-cover">
+            <div class="hidden w-[30%] sm:block">
+                <img src="./Logo.png" alt="" class="h-[40px] w-[200px] object-fill">
             </div>
 
             <div class=" w-full flex justify-center">
@@ -25,7 +30,7 @@
             </div>
 
             <div class="w-[30%] text-right relative" >
-                <button id="sortBtn" class="btn font-bold">Sort</button>
+                <button id="sortBtn" class="btn font-bold">SORT</button>
                 <ul id="sortBtnUl" class="absolute top-13 right-0 hidden font-bold ">
                     <li onclick="sortVideosFetch('ls')" class="py-2 px-4 rounded-lg cursor-pointer border-b-2 bg-red-300 hover:bg-red-500">Ascending</li>
                     <li onclick="sortVideosFetch('ds')" class="py-2 px-4 rounded-lg cursor-pointer border-b-2 bg-red-300 hover:bg-red-500">Descending</li>

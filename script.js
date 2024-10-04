@@ -27,7 +27,7 @@ const showVideos = (data) => {
         // div.classList = "w-full";
         div.innerHTML = 
         `
-            <img src="${d.thumbnail}" alt="" class="h-[200px] object-cover rounded-lg">
+            <img src="${d.thumbnail}" alt="" class="h-[200px] w-full object-cover rounded-lg">
             <!-- details -->
             <div class="py-5 flex gap-3">
                 <div class=""><img src="${d.authors[0].profile_picture}" alt="profile pic" class="w-[50px] h-[50px] rounded-full border-y-4 border-blue-950" ></div>
