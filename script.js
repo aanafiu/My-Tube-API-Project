@@ -7,20 +7,37 @@ const loadCategory = () =>{
 }
 
 // load videos
-const loadVideos = () => {
-    fetch('https://openapi.programming-hero.com/api/phero-tube/videos')
+const loadVideos = (searchText = '') => {
+    fetch(`https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchText}`)
     .then((res) => res.json())
-    .then((data) => showVideos(data.videos))
+    .then((data) =>{showVideos(data.videos); })
     .catch((error) => console.log(error + " occar"))
 }
 
 // showvideos
 const showVideos = (data) => {
-    // console.log(data);
-        
+    console.log("sss" + data.length);
     const videoSection = document.getElementById('video-section');
-            
- videoSection.innerText = '';
+    // const videoSectionMain = document.getElementById('video-section-main');   
+    videoSection.innerText = '';
+    if(data.length === 0)
+    {
+
+        const div = document.createElement('div');
+        div.innerHTML = `
+
+        <img src="./Icon.png" alt="" class = "w-[200px]">
+        <h1 class="font-bold text-2xl pt-5">No Video Found</h1>
+
+        `;
+        div.classList.add('flex','flex-col','justify-center', 'item-center','text-center');
+        videoSection.classList.remove('grid');
+        videoSection.classList.add('flex','pt-10');
+        videoSection.appendChild(div);
+    }
+    else
+    {
+                
     data.forEach(d => {
 
         const div = document.createElement('div');
@@ -36,16 +53,20 @@ const showVideos = (data) => {
                     <!-- author name -->
                     <div class="flex items-center gap-2">
                         <h1 class="text-sm text-gray-500">${d.authors[0].profile_name}</h1>
-                        <img src="./Icon.png" alt="verified logo" class="w-[15px] h-[15px]">
+                        ${d.authors[0].verified === true ? '<img src="./verified.png" alt="verified logo" class="w-[18px] h-[18px]"></img>' : ''  }
+                        
                     </div>
                     <h1 class="text-sm text-gray-500">${d.others.views}</h1>
                 </div>
             </div>
 
         `;
-
+        videoSection.classList.add('grid');
         videoSection.appendChild(div);
     })
+    }
+
+
 }
 
 
@@ -211,6 +232,11 @@ const showSort = (data,s) => {
     };
 
 }
+
+
+document.getElementById('search-input').addEventListener('keyup', (event) =>{
+    loadVideos(event.target.value);
+})
 
 // sortVideosFetch(ls);
 
