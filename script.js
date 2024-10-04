@@ -111,15 +111,18 @@ loadCategory();
 
 // sort btn
 document.getElementById('sortBtn').addEventListener('click', ()=>{
+    
     const sortBtnUl = document.getElementById('sortBtnUl');
     const sortBtn = document.getElementById('sortBtn');
     if(sortBtnUl.classList.contains('hidden')){
+        removeBG();
         sortBtnUl.classList.remove('hidden');
         sortBtn.classList.add("bg-red-500");
 
     }
     else
     {
+        removeBG();
         sortBtnUl.classList.add('hidden');
         sortBtn.classList.remove("bg-red-500");
     }
@@ -146,9 +149,11 @@ const convertViews = (viewNumber) => {
 
 // Sort and display the videos
 const showSort = (data,s) => {
+    removeBG();
     if(s === 'ls')
     {
         //btn active
+
         const sortBtnUl = document.getElementById('sortBtnUl');
         const sortBtn = document.getElementById('sortBtn');
         if(sortBtnUl.classList.contains('hidden')){
