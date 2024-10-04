@@ -59,11 +59,45 @@ const showCatagory = (data) => {
     data.forEach(d => {
       
     const categoriesSection = document.getElementById('categories-section');
-    const button = document.createElement('button');
-    button.innerHTML = `${d.category}`;
-    button.classList = 'btn';
+    // const button = document.createElement('button');
+    const button = document.createElement('div');
+    button.innerHTML = `
+    <button id = "btn-${d.category_id}" onclick = "loadCategoryVideos(${d.category_id})" class = "btn">${d.category}</button>
+    `;
     categoriesSection.appendChild(button);
     } );
+}
+
+const removeBG = () =>{
+    const btns = document.getElementsByClassName("btn");
+    for(let btn of btns){
+        btn.classList.remove("bg-red-500");
+    }
+}
+
+
+// load videos with category
+const loadCategoryVideos = (id) =>{
+    console.log(id);
+    fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`)
+    .then((res) => res.json())
+    // .then((data) => console.log(data.category))
+    .then((data) =>{
+        removeBG();
+
+        const activeBtn = document.getElementById(`btn-${id}`);
+        activeBtn.classList.add("bg-red-500");
+        if(id === '1000')
+        {
+            loadVideos();
+        }
+        else{
+            showVideos(data.category);
+        }
+        
+    })
+    .catch((error) => console.log(error + " occar"))
+
 }
 
 
