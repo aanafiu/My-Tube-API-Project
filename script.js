@@ -16,7 +16,7 @@ const loadVideos = (searchText = '') => {
 
 // showvideos
 const showVideos = (data) => {
-    console.log("sss" + data.length);
+    console.log(data);
     const videoSection = document.getElementById('video-section');
     // const videoSectionMain = document.getElementById('video-section-main');   
     videoSection.innerText = '';
@@ -39,12 +39,22 @@ const showVideos = (data) => {
     {
                 
     data.forEach(d => {
-
+        
+        const t = parseInt(d.others.posted_date);
+        const dateText = convertSecond(t);
+      
         const div = document.createElement('div');
         // div.classList = "w-full";
         div.innerHTML = 
-        `
-            <img src="${d.thumbnail}" alt="" class="h-[200px] w-full object-cover rounded-lg">
+        `   
+            <div class = "relative">
+                                    <!-- time -->
+                                    ${d.others.posted_date?.length == 0 ? "" : `<div id = "timeText" class="absolute bottom-4 right-4 bg-red-600 text-white font-bold py-1 px-2 rounded-lg">
+                                        <h1>${convertSecond(t)} </h1> 
+                                    </div>`}
+
+                    <img src="${d.thumbnail}" alt="" class="h-[200px] w-full object-cover rounded-lg">
+            </div>
             <!-- details -->
             <div class="py-5 flex gap-3">
                 <div class=""><img src="${d.authors[0].profile_picture}" alt="profile pic" class="w-[50px] h-[50px] rounded-full border-y-4 border-blue-950" ></div>
@@ -60,7 +70,9 @@ const showVideos = (data) => {
                 </div>
             </div>
 
+
         `;
+        div.classList = "relative";
         videoSection.classList.add('grid');
         videoSection.appendChild(div);
     })
@@ -69,7 +81,14 @@ const showVideos = (data) => {
 
 }
 
-
+// days count
+function convertSecond(t){
+    const years = Math.floor(t / 365);
+    let remainingDays = t % 365;
+    const months = Math.floor(remainingDays / 30);
+    remainingDays = remainingDays % 30;
+    return `${years !== 0 ? years + "Y" : "" } ${months !== 0 ? months + "M" : ""} ${remainingDays !== 0 ? remainingDays + "D" : ""}`;
+}
 
 
 // Show Catagory
