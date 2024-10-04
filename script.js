@@ -72,7 +72,7 @@ const showVideos = (data) => {
 
 
         `;
-        div.classList = "relative";
+        div.classList = "w-full";
         videoSection.classList.add('grid');
         videoSection.appendChild(div);
     })
